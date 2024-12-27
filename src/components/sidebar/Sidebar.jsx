@@ -15,7 +15,7 @@ export const Sidebar = () => {
             transition: {
                 type: "spring",
                 stiffness: 20,
-                restDelta: 2,
+                // restDelta: 2,
             }
         },
         closed: {
@@ -30,7 +30,7 @@ export const Sidebar = () => {
     };
     return (
     <motion.div className="sidebar" 
-    animate={open ? "open" : "closed"}>
+    animate={open ? "open" : "closed"} variants={variants}>
         <motion.div className="bg">
             <Links/>    
         </motion.div>  
