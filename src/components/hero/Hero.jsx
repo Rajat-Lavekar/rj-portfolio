@@ -64,7 +64,7 @@ export const Hero = () => {
             </motion.div>
         </div>
         <motion.div className="slidingContainer" variants={sliderVariants} initial="initial" animate="animate">
-              Golang ML LLMs
+              Golang_GenAI_LLMs
         </motion.div>
         <div className="imageContainer">
             <img src="/hero2.png" alt=""></img>
