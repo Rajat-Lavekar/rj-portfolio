@@ -26,6 +26,8 @@
         
             a{
                 font-size: 40px;
+                text-decoration: none;
+                color: inherit;
             }
         }
     }
@@ -38,6 +40,7 @@
         top: 25px;
         left: 25px;
         background-color: transparent;
+        // color: black;
         border: none;
         cursor: pointer;
     }
