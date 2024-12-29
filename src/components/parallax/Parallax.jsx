@@ -1,10 +1,22 @@
 import "./parallax.scss"
-// import {motion} from "framer-motion"
+import {useRef} from "react";
+import {motion, useScroll, useTransform} from "framer-motion"
 
 export const Parallax = ({type}) => {
-  return (
-    <div 
-        className="parallax" 
+  
+    const ref = useRef();
+    const {scrollYProgress} = useScroll({
+        target: ref,
+        offset: ["start start", "end start"],
+    });
+
+    const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+    const yTxt = useTransform(scrollYProgress, [0, 1], ["0%", "500%"]);
+
+    return (
+    <motion.div 
+        className="parallax"
+        ref={ref} 
         style={{
             background:
               type === "services" 
@@ -12,10 +24,20 @@ export const Parallax = ({type}) => {
                 : "linear-gradient(180deg, #111132, #505064)", // On acheivements slide
         }}
     >
-        <h1>{type==="services" ? "What Do I Do?" : "What I have done?"}</h1>
-        <div className="mountains"></div>
-        <div className="planets"></div>
-        <div className="stars"></div>
-    </div>
+        <motion.h1 style={{y: yTxt}}>
+            {type==="services" ? "What Do I Do?" : "What have I worked on?"}
+        </motion.h1>
+        <motion.div className="mountains"></motion.div>
+        <motion.div 
+            className="planets" 
+            style={{
+                y: yBg,
+                backgroundImage: `url(${
+                type === "services" ? "/planets.png" : "/sun.png"
+                })`,
+            }}>
+        </motion.div>
+        <motion.div style={{x: yBg}} className="stars"></motion.div>
+    </motion.div>
   )
 }
