@@ -12,7 +12,7 @@ export const Services = () => {
         </motion.div>
         <motion.div className="titleContainer">
             <div className="title">
-                <img src="/people.webp" alt="" />
+                <img src="/people_3.jpg" alt="" />
                 <h1><b>Unique</b> Ideas</h1>
             </div>
             <div className="title">
@@ -21,38 +21,66 @@ export const Services = () => {
             </div>
         </motion.div>
         <motion.div className="listContainer">
-            <div className="box">
+            <motion.div 
+                className="box"
+                whileHover={{
+                    background: "lightgray",
+                    color: "black",
+                    scale: 1.02,
+                }}
+            >
                 <h2>Title 1</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
                 </p>
                 <button>Go</button>
-            </div>
-            <div className="box">
+            </motion.div>
+            <motion.div 
+                className="box"
+                whileHover={{
+                    background: "lightgray",
+                    color: "black",
+                    scale: 1.02,
+                    }}
+            >
                 <h2>Title 2</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
                 </p>
                 <button>Go</button>
-            </div>
-            <div className="box">
+            </motion.div>
+            <motion.div 
+                className="box"
+                whileHover={{
+                    background: "lightgray",
+                    color: "black",
+                    scale: 1.02,
+                }}
+            >
                 <h2>Title 3</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
                 </p>
                 <button>Go</button>
-            </div>
-            <div className="box">
+            </motion.div>
+            <motion.div 
+                className="box"
+                whileHover={{
+                    background: "lightgray",
+                    color: "black",
+                    scale: 1.02,
+                }}
+            >
                 <h2>Title 4</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
                 </p>
                 <button>Go</button>
-            </div>
+            </motion.div>
         </motion.div>
     </div>
   )
