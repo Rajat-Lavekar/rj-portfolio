@@ -1,26 +1,56 @@
+import { useRef } from "react";
 import "./services.scss";
-import {motion} from "framer-motion"
+import {color, motion, useInView} from "framer-motion"
+
+const variants = {
+    initial: {
+        x: -500,
+        y: 100,
+        opacity: 0,
+    },
+    animate: {
+        x: 0,
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 1,
+            staggerChildren: 0.1,
+        },
+    }
+}
+
 
 export const Services = () => {
-  return (
-    <div className="services">
-        <motion.div className="textContainer">
+  
+    const ref = useRef()
+    const isInView = useInView(ref, {margin:"-100px"});
+    
+    return (
+    <motion.div 
+      className="services" 
+      variants={variants} 
+      initial="initial" 
+    //   whileInView="animate"
+      ref={ref}
+      animate={isInView && "animate"}
+    >
+        <motion.div className="textContainer" variants={variants}>
             <p>
                 I aspire to Learn and Contribute 
                 <br />throughout my way forward   
             </p> <hr />
         </motion.div>
-        <motion.div className="titleContainer">
+        <motion.div className="titleContainer" variants={variants}>
             <div className="title">
                 <img src="/people_3.jpg" alt="" />
-                <h1><b>Unique</b> Ideas</h1>
+                <h1><motion.b whileHover={{color:"orange"}}>Unique</motion.b> Ideas</h1>
             </div>
             <div className="title">
-                <h1><b>Bold line</b>Normal</h1>
+                <h1><motion.b whileHover={{color:"orange"}}>Bold line</motion.b>Normal</h1>
                 <button>WHAT DO I DO?</button>
             </div>
         </motion.div>
-        <motion.div className="listContainer">
+        <motion.div className="listContainer" variants={variants}>
             <motion.div 
                 className="box"
                 whileHover={{
@@ -82,6 +112,6 @@ export const Services = () => {
                 <button>Go</button>
             </motion.div>
         </motion.div>
-    </div>
+    </motion.div>
   )
 }
