@@ -20,6 +20,12 @@
     .formContainer{
         flex: 1;
         
+        .phoneSvg{
+           stroke: orange;
+           position: absolute;
+           margin: auto;
+        }
+
         form{
             display: flex;
             flex-direction: column;
