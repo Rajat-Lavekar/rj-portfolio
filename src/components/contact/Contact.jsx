@@ -1,12 +1,13 @@
 import "./contact.scss"
-import {useRef} from 'react';
+import {useRef, useState, React} from 'react';
 import {motion, useInView} from 'framer-motion';
 import emailjs from '@emailjs/browser';
-require('dotenv').config();
+
+
 
 const variants = {
     initial: {
-        y: 500,
+        y: 500, 
         opacity: 0,
     },
     animate: {
@@ -23,22 +24,29 @@ const variants = {
 export const Contact = () => {
     const ref = useRef();
     const formRef = useRef();
-    
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+
     const isInView = useInView(ref, {margin: "-100px"});
 
     const sendEmail = (e) => {
         e.preventDefault();
-    
+        console.log(import.meta.env.VITE_SERVICE_ID,import.meta.VITE_TEMPLATE_ID,import.meta.env.VITE_PUBLIC_KEY);
         emailjs
-          .sendForm(process.env.SERVICE_ID, process.env.TEMPLATE_ID, formRef.current, {
-            publicKey: process.env.PUBLIC_KEY,
-          })
+          .sendForm(
+                import.meta.env.VITE_SERVICE_ID, 
+                import.meta.env.VITE_TEMPLATE_ID, 
+                formRef.current, 
+                import.meta.env.VITE_PUBLIC_KEY
+            )
           .then(
             () => {
               console.log('SUCCESS!');
+              setSuccess(true);
             },
             (error) => {
-              console.log('FAILED...', error.text);
+              console.log('FAILED...', error);
+              setError(true);
             },
           );
       };
@@ -76,8 +84,8 @@ export const Contact = () => {
                     <motion.path 
                       d="M13.5 2C13.5 2 15.8335 2.21213 18.8033 5.18198C21.7731 8.15183 21.9853 10.4853 21.9853 10.4853" 
                     //   stroke="#1C274C" 
-                      stroke-width="1.2" 
-                      stroke-linecap="round"
+                      strokeWidth="1.2" 
+                      strokeLinecap="round"
                       initial={{pathLength: 0}}
                       animate={isInView && {pathLength: 1}}
                       transition={{duration: 3}}
@@ -85,8 +93,8 @@ export const Contact = () => {
                     <motion.path 
                       d="M14.207 5.53564C14.207 5.53564 15.197 5.81849 16.6819 7.30341C18.1668 8.78834 18.4497 9.77829 18.4497 9.77829" 
                     //   stroke="#1C274C" 
-                      stroke-width="1.2" 
-                      stroke-linecap="round"
+                      strokeWidth="1.2" 
+                      strokeLinecap="round"
                       initial={{pathLength: 0}}
                       animate={isInView && {pathLength: 1}}
                       transition={{duration: 4}}
@@ -102,14 +110,18 @@ export const Contact = () => {
             </motion.div>
         
             <motion.form
+              ref={formRef}
               initial={{opacity: 0}}
+              onSubmit={sendEmail}
               animate={isInView && {opacity: 1}}
               transition={isInView && {delay: 3, duration: 1}}
             >
-                <input type="text" required placeholder="Name" />
-                <input type="email" required placeholder="Email" />
-                <textarea rows={8} placeholder='Message'></textarea>
+                <input type="text" required placeholder="Name" name="name" />
+                <input type="email" required placeholder="Email" name="email"/>
+                <textarea rows={8} placeholder='Message' name="message"></textarea>
                 <button>Send</button>
+                {error && "Error"}
+                {success && "Success"}
             </motion.form>
         </div>
     </motion.div>
