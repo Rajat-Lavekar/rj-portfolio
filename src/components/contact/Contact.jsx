@@ -2,7 +2,7 @@ import "./contact.scss"
 import {useRef} from 'react';
 import {motion, useInView} from 'framer-motion';
 import emailjs from '@emailjs/browser';
-
+require('dotenv').config();
 
 const variants = {
     initial: {
@@ -30,8 +30,8 @@ export const Contact = () => {
         e.preventDefault();
     
         emailjs
-          .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formRef.current, {
-            publicKey: 'YOUR_PUBLIC_KEY',
+          .sendForm(process.env.SERVICE_ID, process.env.TEMPLATE_ID, formRef.current, {
+            publicKey: process.env.PUBLIC_KEY,
           })
           .then(
             () => {
