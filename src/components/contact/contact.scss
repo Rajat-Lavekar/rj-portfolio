@@ -24,6 +24,7 @@
            stroke: orange;
            position: absolute;
            margin: auto;
+           z-index: 1;
         }
 
         form{
@@ -42,6 +43,8 @@
             border: 1px solid white;
             color: white;
             border-radius: 5px;
+            // pointer-events: auto;
+            z-index: 2;
         }
 
         button{
@@ -52,6 +55,8 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            // display: inline-block;
+            z-index: 3;
         }
     }
 }
